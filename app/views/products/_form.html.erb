@@ -1,0 +1,27 @@
+<%= form_for (@product) do |f| %>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="form-group">
+
+      <%= f.text_field :name, placeholder: "Nombre del Producto", class: "form-control" %>
+      <%= f.text_field :price, placeholder: "Precio del Producto", class: "form-control" %>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md">
+    <div class="form-group">
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+  </div>
+</div>
+
+
+  <%= f.submit "Submit", class: "btn btn-primary btn-lg" %>
+
+<% end %>
