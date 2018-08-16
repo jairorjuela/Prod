@@ -23,3 +23,11 @@ Category.create(name: "Ropa")
 Category.create(name: "Oficina")
 
 Category.create(name: "Mascotas")
+
+Purchase.create(name_purchases: "Compra")
+
+Purchase.create(name_purchases: "Retiro")
+
+Purchase.create(name_purchases: "Transferencia")
+
+Purchase.create(name_purchases: "Pago")

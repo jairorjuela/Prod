@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    @products = @products.where("category_id LIKE :category_id", category_id: "%#{params[:category_id]}%")
   end
+
 
   def new
     @product = Product.new
@@ -13,6 +15,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
+      @errors = @product.errors.full_messages
       render :new
     end
   end
@@ -31,13 +34,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
+    product = Product.find(params[:id])
+    product.destroy
     redirect_to products_path
   end
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :category_ids => [])
+    params.require(:product).permit(:name, :price, :category_id)
   end
 end
