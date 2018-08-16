@@ -2,12 +2,14 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @products = @products.where("category_id LIKE :category_id", category_id: "%#{params[:category_id]}%")
+    @products = @products.where("purchase_id LIKE :purchase_id", purchase_id: "%#{params[:purchase_id]}%")
   end
 
 
   def new
     @product = Product.new
     @categories = Category.all
+    @purchases = Purchase.all
   end
 
   def create
@@ -41,6 +43,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :category_id)
+    params.require(:product).permit(:name, :price, :category_id, :purchase_id)
   end
 end
