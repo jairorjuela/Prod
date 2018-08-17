@@ -20,6 +20,7 @@
 
       <%= f.text_field :name, placeholder: "Nombre del Producto", class: "form-control" %>
       <%= f.text_field :price, placeholder: "Precio del Producto", class: "form-control" %>
+      <%= f.date_field :date_product, as: :date, value: f.object.try(:strftime, "%m/%d/%Y"), class: "form-control" %>
 
     </div>
   </div>
