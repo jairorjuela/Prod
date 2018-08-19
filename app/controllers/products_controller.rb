@@ -1,12 +1,11 @@
 class ProductsController < ApplicationController
+
   def index
     @products = Product.all
     @products = @products.where("category_id LIKE :category_id", category_id: "%#{params[:category_id]}%")
     @products = @products.where("purchase_id LIKE :purchase_id", purchase_id: "%#{params[:purchase_id]}%")
-    @search = ProductSearch.new(params[:search])
-    @products = @search.scope
+    @products = @products.by_month(params[:month])
   end
-
 
   def new
     @product = Product.new
@@ -47,4 +46,5 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :price, :category_id, :purchase_id, :date_product)
   end
+
 end
