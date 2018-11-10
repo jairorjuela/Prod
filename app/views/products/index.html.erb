@@ -69,7 +69,7 @@
             </h3>
               <div class="form-group col-md-4">
 
-                <% mont = Date.today -%>
+                <% mont = Date.today %>
                 <% month = mont + Date.today.year %>
                 <%= select_month(month, :prefix => 'month', :discard_type => true, :include_blank => true, prompt: "Month", class: "form-control", type: "submit") %>
 

@@ -48,3 +48,49 @@ class ProductsController < ApplicationController
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def create
+  @expense = Expense.create(expense_params)
+  if @expense.save
+    redirect_to expenses_path
+  else
+    @errors = @expense.errors.full_messages
+    render :new
+  end
+end
+
+
+
+
+def edit
+  @expense = Expense.find(params[:id])
+end
+
+
+
+def update
+  expense = Expense.find(params[:id])
+  if expense.update(expense_params)
+    redirect_to expenses_path
+  else
+    render :edit
+  end
+end
